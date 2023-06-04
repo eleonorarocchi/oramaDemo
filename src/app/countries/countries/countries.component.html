@@ -1,0 +1,15 @@
+<h1>{{title}}</h1>
+Total {{countriesNumber}}
+<hr/>
+<input type="text" [(ngModel)]="searchBox" />
+<button (click)="search()">Search</button>
+<hr/>
+<ng-container *ngIf="!!searchResult">
+Risultati trovati: {{searchResult.count}} in {{searchResult.elapsed.formatted}}
+<br/>
+<div>{{searchResult.hits | json}}</div>
+</ng-container>
+<hr/>
+
+<button (click)="searchTmp()">Search tmp</button>
+
