@@ -8,14 +8,11 @@ import { CountriesService } from 'src/app/service/countries.service';
   styleUrls: ['./countries.component.css']
 })
 export class CountriesComponent {
-  title = 'Countries';
+  title = 'Divertiamoci con le bandiere';
   countriesDB: any;
   searchBox = '';
   countriesNumber: number = 0;
   searchResult: Results<Result[]> | undefined;
-
-  temp: any[] = [];
-
 
   constructor(private _service: CountriesService) {
     this._service.getAllCountries().subscribe(async result => {
@@ -23,8 +20,7 @@ export class CountriesComponent {
       await this.createDB();
       await this.populateDB(docs);
       this.countriesNumber = this.countriesDB.data.docs.count;
-
-      this.temp = docs;
+      this.search();
     });
   }
 
@@ -58,20 +54,7 @@ export class CountriesComponent {
     this.searchResult = await search(this.countriesDB, {
       term: this.searchBox,
       properties: '*',
+      limit: this.countriesNumber
     });
   }
-
-  searchTmp(){
-    var eventStartTime = new Date().getUTCMilliseconds();
-
-  console.log(  this.temp.filter(item => item.name.common.toUpperCase().indexOf(this.searchBox.toUpperCase()) >= 0 ||
-  item.name.official.toUpperCase().indexOf(this.searchBox.toUpperCase()) >= 0 ||
-  item.name.nativeName.fra.official.toUpperCase().indexOf(this.searchBox.toUpperCase()) >= 0
-  ));
-
-      var eventEndTime = new Date().getUTCMilliseconds();
-      var duration = eventEndTime - eventStartTime;
-      console.log(duration)
-  }
-
 }

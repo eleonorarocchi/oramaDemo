@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CountriesService {
+  API_URL = 'https://restcountries.com/v3.1/all?fields=name,flags';
 
   constructor(private _http: HttpClient) { }
 
   getAllCountries(): Observable<HttpResponse<any>> {
     return this._http.get<any>(
       //'https://restcountries.com/v3.1/all',
-      'https://restcountries.com/v3.1/all?fields=name,flags', { observe: 'response' })
+      this.API_URL, { observe: 'response' })
   }
 }

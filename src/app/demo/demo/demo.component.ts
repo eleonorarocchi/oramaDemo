@@ -20,7 +20,6 @@ export class DemoComponent {
         },
       },
     });
-    console.log(db);
     await insert(db, {
       name: 'Wireless Headphones',
       description:
@@ -30,12 +29,10 @@ export class DemoComponent {
         rating: 4.5,
       },
     });
-    console.log(db);
     const searchResult = await search(db, {
       term: 'immersive sound quality',
       properties: ['description'],
     });
-    console.log(searchResult);
   }
 
   async createDb() {
@@ -87,6 +84,5 @@ export class DemoComponent {
       term: 'Harry',
       properties: '*',
     });
-    console.log(searchResult);
   }
 }

@@ -1,15 +1,29 @@
-<h1>{{title}}</h1>
-Total {{countriesNumber}}
-<hr/>
-<input type="text" [(ngModel)]="searchBox" />
-<button (click)="search()">Search</button>
-<hr/>
-<ng-container *ngIf="!!searchResult">
-Risultati trovati: {{searchResult.count}} in {{searchResult.elapsed.formatted}}
-<br/>
-<div>{{searchResult.hits | json}}</div>
-</ng-container>
-<hr/>
-
-<button (click)="searchTmp()">Search tmp</button>
+<p>
+  <mat-toolbar color="primary">
+    <span>{{title}}</span>
+  </mat-toolbar>
+</p>
+<div class="container">
+  <div class="search">
+    <mat-form-field class="example-full-width">
+      <mat-label>Cerca</mat-label>
+      <input type="text" [(ngModel)]="searchBox" matInput placeholder="Search" (keyup.enter)="search()"/>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-stroked-button (click)="search()">Vai</button>
+  </div>
+  <hr/>
+  <ng-container *ngIf="!!searchResult">
+    <p class="results">Risultati trovati: {{searchResult.count}} su  {{countriesNumber}} in {{searchResult.elapsed.formatted}}</p>
+    <br/>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let doc of searchResult.hits">
+        <div class="country">
+          <img src="{{doc.document | countryFlag}}" width="30px"/>
+          {{doc.document | countryName}}
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+</div>
 

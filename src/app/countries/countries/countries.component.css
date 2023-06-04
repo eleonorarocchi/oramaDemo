@@ -1,0 +1,34 @@
+.container {
+  padding: 25px;
+}
+
+.search {
+  display: flex;
+  justify-content: right;
+}
+
+.search button {
+  height: 57px;
+}
+
+.results {
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+  color: white;
+  text-align: center;
+}
+
+mat-list {
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+}
+
+.country {
+  align-items: center;
+  display: flex;
+}
+
+.country img {
+  margin-right: 5px;
+}
